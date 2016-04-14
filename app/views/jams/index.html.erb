@@ -1,0 +1,13 @@
+<h1>All Jams</h1>
+<% @jams.each_slice(3) do |three_jams| %>
+  <div class="row">
+    <% three_jams.each do |jam| %>
+      <div class="col-md-4 jam-card">
+        <div class="well">
+          <h3>Jam Title: <a href="/jams/<%= jam.id %>"><%= jam.name %></a></h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<%= link_to "User Info", "/" %>

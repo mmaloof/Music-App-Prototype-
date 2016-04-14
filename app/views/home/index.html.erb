@@ -1,0 +1,29 @@
+<% if current_user %>
+  <%= link_to "Sign out", "/users/sign_out", method: :delete %>
+  <p>First Name: <%= current_user.first_name %></p>
+  <p>Last Name: <%= current_user.last_name %></p>
+  <p>Birthdate: <%= current_user.birthdate %></p>
+  <p>Instruments: </p>
+  <ul>
+  <% current_user.instruments.each do |instrument| %>
+    <li>
+      <%= instrument.name %>
+    </li>
+  <% end %>
+  </ul>
+  <p>Genres: </p>
+  <ul>
+  <% current_user.genres.each do |genre| %>
+    <li>
+      <%= genre.name %>
+    </li>
+  <% end %>
+  </ul>
+<%= link_to "Create Jam", "/jams/new" %>
+<%= link_to "View all Jams", "/jams" %>
+
+<% else %>
+  <%= link_to "Sign in", "/users/sign_in" %>
+  <%= link_to "Sign up", "/users/sign_up" %>
+<% end %>
+

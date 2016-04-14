@@ -1,0 +1,32 @@
+<h1>New Jam</h1>
+
+<%= form_tag "/jams", method: :post do %>
+<div>
+  <%= label_tag :name_it %>
+  <%= text_field_tag :name %>
+</div>
+<div>
+  <%= label_tag :venue %>
+  <%= text_field_tag :venue %>
+</div>
+<div>
+  <%= label_tag :datetime %>
+  <%= datetime_local_field_tag :datetime %>
+</div>
+<div>
+  <%= label_tag :summary %>
+  <%= text_field_tag :summary %>
+</div>
+<div>
+  <%= label_tag :address %>
+  <%= text_field_tag :address %>
+</div>
+<div>
+  <%= submit_tag "Start Jam!" %>
+</div>
+
+<%= link_to "User Info", "/" %>
+<%= link_to "View all Jams", "/jams" %>
+
+
+<% end %>

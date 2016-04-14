@@ -1,0 +1,31 @@
+<h1>Update User!</h1>
+
+<%= form_tag "/users/#{@user.id}", method: :patch do %>
+
+  <div>
+    <%= label_tag :first_name %>
+    <%= text_field_tag :first_name %>
+  </div>
+  <div>
+    <%= label_tag :last_name %>
+    <%= text_field_tag :last_name %>
+  </div>
+  <div>
+    <%= label_tag :birthdate %>
+    <%= date_field_tag :birthdate %>
+  </div>
+  <div>
+    <%= label_tag :genre_id %>
+    <%= text_field_tag :genre_id %>
+  </div>
+  <div>
+    <%= label_tag :instrument_id %>
+    <%= text_field_tag :instrument_id %>
+  </div>
+  <div>
+    <%= submit_tag "Edit User Info" %>
+  </div>
+
+<%= link_to "User Info", "/" %>
+  <% end %>
+

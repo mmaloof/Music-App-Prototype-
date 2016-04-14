@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407022736) do
+ActiveRecord::Schema.define(version: 20160414011401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,34 @@ ActiveRecord::Schema.define(version: 20160407022736) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "jams", force: :cascade do |t|
+    t.string   "venue"
+    t.date     "date"
+    t.string   "summary"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.time     "time"
+    t.integer  "user_id"
+    t.string   "name"
+  end
+
+  create_table "user_genres", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_instruments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "instrument_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -41,6 +69,9 @@ ActiveRecord::Schema.define(version: 20160407022736) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "birthdate"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
