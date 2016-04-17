@@ -7,5 +7,17 @@
   <h3>Summary: <%= @jam.summary %></h3>
   <h3>Address: <%= @jam.address %></h3>
 </div>
+<div>
+<h4>Musicians that have joined:</h4>
+<ul>
+  <% @jam.users.each do |user| %>
+    <li><%= user.name %></li>
+  <% end %>
+</ul>
+</div>
 <%= link_to "User Info", "/" %>
 <%= link_to "Back to all Jams", "/jams" %>
+<%= link_to "Edit this Jam", "/jams/#{@jam.id}/edit" %>
+<%= link_to "Delete this jam", "/jams/#{@jam.id}" %>
+
+<%= link_to "Join this jam", "/commitments?jam_id=#{@jam.id}", {method: :post} %>

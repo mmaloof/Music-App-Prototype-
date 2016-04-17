@@ -1,0 +1,35 @@
+<%= form_tag "/jams/#{@jam.id}", method: :patch do %>
+
+<div>
+  <%= label_tag :name_it %>
+  <%= text_field_tag :name, @jam.name %>
+</div>
+
+<div>
+  <%= label_tag :venue %>
+  <%= text_field_tag :venue, @jam.venue %>
+</div>
+
+<div>
+<%= label_tag :datetime %>
+<%= datetime_local_field_tag :datetime %>
+</div>
+
+<div>
+  <%= label_tag :summary %>
+  <%= text_field_tag :summary, @jam.summary %>
+</div>
+
+<div>
+  <%= label_tag :address %>
+  <%= text_field_tag :address, @jam.address %>
+</div>
+
+<div>
+  <%= submit_tag "Edit Jam" %>
+</div>
+
+<%= link_to "Back to all Jams", "/jams" %>
+<%= link_to "User Info", "/" %>
+
+<% end %>

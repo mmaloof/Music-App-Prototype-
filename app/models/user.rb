@@ -8,4 +8,11 @@ class User < ActiveRecord::Base
   has_many :instruments, through: :user_instruments
   has_many :user_genres
   has_many :user_instruments
+  has_many :created_jams, class_name: :Jam, foreign_key: :user_id
+  has_many :commitments
+  has_many :jams, through: :commitments
+
+  def name
+    "#{first_name} #{last_name}" 
+  end 
 end

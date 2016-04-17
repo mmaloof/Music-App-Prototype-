@@ -9,4 +9,9 @@ Rails.application.routes.draw do
   get '/jams/new' => 'jams#new'
   post '/jams' => 'jams#create'
   get '/jams/:id' => 'jams#show'
+  get '/jams/:id/edit' => 'jams#edit'
+  patch '/jams/:id' => 'jams#update'
+  delete '/jams/:id' => 'jams#destroy'
+
+  post '/commitments' => 'commitments#create'
 end
