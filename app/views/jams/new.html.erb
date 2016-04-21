@@ -21,6 +21,29 @@
   <%= label_tag :address %>
   <%= text_field_tag :address %>
 </div>
+
+<div>
+  <h4>Desired Instruments:</h4>
+  <ul>
+    <% @instruments.each do |instrument| %>
+      <li>
+        <%= instrument.name %>
+        <%= text_field_tag "instruments[#{instrument.id}]" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <h4>Desired Genres:</h4>
+  <ul>
+    <% @genres.each do |genre| %>
+      <%= check_box_tag genre.name.downcase, genre.name.downcase %>
+      <%= genre.name %>
+    <%end%>
+  </ul>
+</div>
+
 <div>
   <%= submit_tag "Start Jam!" %>
 </div>

@@ -5,6 +5,8 @@ class JamsController < ApplicationController
   end
 
   def new
+    @genres = Genre.all
+    @instruments = Instrument.all
     render 'new.html.erb'
   end
 
@@ -18,10 +20,26 @@ class JamsController < ApplicationController
       address: params[:address],
       user_id: current_user.id
     )
-  
     if @jam.save
+      params[:instruments].each do |instrument_id, quantity|
+        JamInstrument.create(
+          jam_id: @jam.id,
+          instrument_id: instrument_id,
+          quantity: quantity
+        )
+      end
+      Genre.all.each do |genre|
+        if params[genre.name.downcase]
+          JamGenre.create(
+            jam_id: @jam.id,
+            genre_id: genre.id
+          )
+        end
+      end
       redirect_to "/jams/#{@jam.id}"
     else
+      @genres = Genre.all
+      @instruments = Instrument.all
       render 'new.html.erb'
     end
   end
@@ -45,18 +63,18 @@ class JamsController < ApplicationController
       time: params[:datetime],
       summary: params[:summary],
       address: params[:address]
-    )
-      flash[:success] = "Jam successfully updated!"
-      redirect_to "/jams/#{@jam.id}"
-    else
-      render 'edit.html.erb'
-    end
+      )
+    flash[:success] = "Jam successfully updated!"
+    redirect_to "/jams/#{@jam.id}"
+  else
+    render 'edit.html.erb'
   end
+end
 
-  def destroy
-    jam_id = params[:id]
-    @jam = Jam.find_by(id: params[:id])
-    @jam.destroy
-    render 'destroy.html.erb'
-  end
+def destroy
+  jam_id = params[:id]
+  @jam = Jam.find_by(id: params[:id])
+  @jam.destroy
+  render 'destroy.html.erb'
+end
 end 
