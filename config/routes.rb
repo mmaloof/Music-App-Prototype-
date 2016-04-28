@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get '/' => 'home#index'
+  get '/map' => 'home#map'
 
   get '/users/:id/edit' => 'users#edit'
   patch '/users/:id' => 'users#update'
@@ -14,4 +15,10 @@ Rails.application.routes.draw do
   delete '/jams/:id' => 'jams#destroy'
 
   post '/commitments' => 'commitments#create'
+
+  namespace :api do 
+    namespace :v1 do 
+      get '/users' => 'users#index'
+    end 
+  end
 end

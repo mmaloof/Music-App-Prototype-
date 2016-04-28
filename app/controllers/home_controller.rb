@@ -6,4 +6,8 @@ class HomeController < ApplicationController
       render 'index.html.erb'
     end
   end
+
+  def map
+    render 'map.html.erb'
+  end
 end

@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     @user.update(
       first_name: params[:first_name],
       last_name: params[:last_name],
-      birthdate: params[:birthdate]
+      birthdate: params[:birthdate],
+      address: params[:address]
     )
     UserGenre.create(
       user_id: user_id,

@@ -28,7 +28,9 @@
 <div>
 <h4>Genres:</h4>
 <ul>
-  
+  <% @jam.jam_genres.each do |jam_genre| %>
+    <li><%= "#{jam_genre.genre.name}" %></li>
+  <% end %>
 </ul>
 </div>
 <%= link_to "User Info", "/" %>

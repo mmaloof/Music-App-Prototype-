@@ -3,6 +3,7 @@
   <p>First Name: <%= current_user.first_name %></p>
   <p>Last Name: <%= current_user.last_name %></p>
   <p>Birthdate: <%= current_user.birthdate %></p>
+  <p>Address: <%= current_user.address %></p>
   <p>Instruments: </p>
   <ul>
   <% current_user.instruments.each do |instrument| %>
@@ -21,9 +22,11 @@
   </ul>
 <%= link_to "Create Jam", "/jams/new" %>
 <%= link_to "View all Jams", "/jams" %>
+<%= link_to "View Map", "/map" %>
 
 <% else %>
   <%= link_to "Sign in", "/users/sign_in" %>
   <%= link_to "Sign up", "/users/sign_up" %>
 <% end %>
+
 

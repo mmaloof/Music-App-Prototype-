@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :commitments
   has_many :jams, through: :commitments
 
+  geocoded_by :address
+  after_validation :geocode 
+
   def name
     "#{first_name} #{last_name}" 
   end 
