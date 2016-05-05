@@ -1,9 +1,13 @@
+<div class="container">
 <% if current_user %>
   <%= link_to "Sign out", "/users/sign_out", method: :delete %>
-  <p>First Name: <%= current_user.first_name %></p>
-  <p>Last Name: <%= current_user.last_name %></p>
+  <h1 class="turquoiseText"><%= current_user.first_name %> <%= current_user.last_name%></h1>
+    <div class="row marginBottom marginTop">
+    </div>
+    
   <p>Birthdate: <%= current_user.birthdate %></p>
   <p>Address: <%= current_user.address %></p>
+</div>
   <p>Instruments: </p>
   <ul>
   <% current_user.instruments.each do |instrument| %>
@@ -25,5 +29,13 @@
   <%= link_to "Sign in", "/users/sign_in" %>
   <%= link_to "Sign up", "/users/sign_up" %>
 <% end %>
+<%= link_to "Update Info", "/users/#{current_user.id}/edit" %>
+<%= image_tag current_user.avatar.url(:thumb) %>
 
-
+<div ng-app="app">
+  <div ng-controller="chatCtrl">
+    <section class="musicapp">
+      <header class="header">
+        <h1>Chat Feature</h1>
+  </div>
+</div>

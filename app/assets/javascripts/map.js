@@ -6,12 +6,22 @@ function initMap() {
     center: {lat: 41.881832, lng: -87.623177}
   });
 
-  marker = new google.maps.Marker({
-    map: map,
-    draggable: false,
-    animation: google.maps.Animation.DROP,
-    position: {lat: 41.978361, lng: -87.669315}
-  });
+  fetch('/api/v1/users')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(users) {
+      console.log(users);
+      users.forEach(function(user) {
+        var marker = new google.maps.Marker({
+          map: map,
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          position: {lat: user.latitude, lng: user.longitude}
+        });
+      });
+    });
+
 }
 
 
