@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+  def index
+    if current_user && current_user.first_name == nil
+      redirect_to "/users/#{current_user.id}/edit"
+    else
+      render 'index.html.erb'
+    end
+  end
+
   def edit
     user_id = params[:id]
     @user = User.find_by(id: params[:id])
@@ -31,8 +39,7 @@ class UsersController < ApplicationController
         )
       end
     end
-
-    render 'update.html.erb'
+    redirect_to "/" 
   end
 
   def current_user_profile
@@ -47,7 +54,11 @@ class UsersController < ApplicationController
       :last_name,
       :birthdate,
       :address,
-      :avatar
+      :avatar, 
+      :bio, 
+      :area,
+      :username,
+      :artists
     ) 
   end
 end

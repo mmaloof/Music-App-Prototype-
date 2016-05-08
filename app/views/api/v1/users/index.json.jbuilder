@@ -5,4 +5,5 @@ json.array! @users.each do |user|
   json.address user.address
   json.latitude user.latitude
   json.longitude user.longitude
+  json.isCurrentUser user.id == current_user.id
 end

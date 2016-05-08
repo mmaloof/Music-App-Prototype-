@@ -1,11 +1,14 @@
 class JamsController < ApplicationController
   def index
-    @jams = Jam.all
+    if params[:genre_id]
+      @jams = Genre.find(params[:genre_id]).jams
+    else
+      @jams = Jam.all
+    end
     render 'index.html.erb'
   end
 
   def new
-    @genres = Genre.all
     @instruments = Instrument.all
     render 'new.html.erb'
   end
@@ -52,6 +55,8 @@ class JamsController < ApplicationController
 
   def edit
     @jam = Jam.find_by(id: params[:id])
+    @genres = Genre.all
+    @instruments = Instrument.all
   end
 
   def update
@@ -64,6 +69,17 @@ class JamsController < ApplicationController
       summary: params[:summary],
       address: params[:address]
     )
+
+      @jam.id.jam_genres.destroy_all
+      Genre.all.each do |genre|
+        if params[genre.name.downcase]
+          JamGenre.create(
+            jam_id: jam.id,
+            genre_id: genre.id
+          )
+        end
+      end
+
       flash[:success] = "Jam successfully updated!"
       redirect_to "/jams/#{@jam.id}"
     else

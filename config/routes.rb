@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  get '/' => 'home#index'
+  get '/' => 'home#home'
   get '/map' => 'home#map'
 
+  get '/users' => 'users#index'
   get '/users/:id/edit' => 'users#edit'
   patch '/users/:id' => 'users#update'
 
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   namespace :api do 
     namespace :v1 do 
       get '/users' => 'users#index'
+      get '/chat' => 'users#index'
     end 
   end
 end

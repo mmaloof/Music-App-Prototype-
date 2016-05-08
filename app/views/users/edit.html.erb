@@ -3,6 +3,10 @@
 <%= form_tag "/users/#{@user.id}", method: :patch, multipart: true do %>
 
   <div>
+    <%= label_tag :username %>
+    <%= text_field_tag :username, @user.username %>
+  </div>
+  <div>
     <%= label_tag :first_name %>
     <%= text_field_tag :first_name, @user.first_name %>
   </div>
@@ -13,6 +17,18 @@
   <div>
     <%= label_tag :birthdate %>
     <%= date_field_tag :birthdate, @user.birthdate %>
+  </div>
+  <div>
+    <%= label_tag :description %>
+    <%= text_field_tag :bio, @user.bio %>
+  </div>
+  <div>
+    <%= label_tag :area %>
+    <%= text_field_tag :area, @user.area %>
+  </div>
+  <div>
+    <%= label_tag :artists %>
+    <%= text_field_tag :artists, @user.artists %>
   </div>
 
   <div>

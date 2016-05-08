@@ -1,4 +1,4 @@
-<h1>New Jam</h1>
+<h1>New Event</h1>
 
 <%= form_tag "/jams", method: :post do %>
 <div>
@@ -24,6 +24,7 @@
 
 <div>
   <h4>Desired Instruments:</h4>
+  <p>(Include number of instruments wanted)</p>
   <ul>
     <% @instruments.each do |instrument| %>
       <li>

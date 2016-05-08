@@ -26,6 +26,13 @@
 </div>
 
 <div>
+  <% @genres.each do |genre| %>
+    <%= check_box_tag genre.name.downcase, genre.name.downcase, checked = JamGenre.exists?(jam_id: @jam.id, genre_id: genre.id) %>
+    <%= genre.name %>
+  <% end %>
+</div>
+
+<div>
   <%= submit_tag "Edit Jam" %>
 </div>
 

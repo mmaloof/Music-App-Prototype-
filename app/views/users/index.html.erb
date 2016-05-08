@@ -1,0 +1,49 @@
+<div class="container">
+<% if current_user %>
+  <%= link_to "Sign out", "/users/sign_out", method: :delete %>
+  <h1 class="UserNameText"><%= current_user.username %></h1>
+  <p class="RealNameText"><%= current_user.first_name %> <%= current_user.last_name %></p>
+    <div class="row marginBottom marginTop">
+    </div>
+    
+  <%= image_tag current_user.avatar.url(:thumb) %>
+
+  <p>Birthdate: <%= current_user.birthdate %></p>
+  <p>Bio: <%= current_user.bio %></p>
+  <p>Favorite Artists: <%= current_user.artists %></p>
+  <p>City and Neighborhood: <%= current_user.area %> </p>
+</div>
+  <p>Instruments: </p>
+  <ul>
+  <% current_user.instruments.each do |instrument| %>
+    <li>
+      <%= instrument.name %>
+    </li>
+  <% end %>
+  </ul>
+  <p>Genres: </p>
+  <ul>
+  <% current_user.genres.each do |genre| %>
+    <li>
+      <%= genre.name %>
+    </li>
+  <% end %>
+  </ul>
+
+<% else %>
+  <%= link_to "Sign in", "/users/sign_in" %>
+  <%= link_to "Sign up", "/users/sign_up" %>
+<% end %>
+<%= link_to "Update Info", "/users/#{current_user.id}/edit" %>
+
+<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+<div ng-app="app">
+  <div ng-controller="chatCtrl" ng-init="setup()">
+    <h1>Chat Messages</h1>
+    <input placeholder="New message" ng-model="newMessageText">
+    <button ng-click="createMessage(newMessageText)">Submit</button>
+    <div ng-repeat="message in messages">
+      <p>{{ message.name }}: {{ message.text }}</p>
+    </div>
+  </div>
+</div>
