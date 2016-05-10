@@ -6,10 +6,7 @@ function initMap() {
     center: {lat: 41.881832, lng: -87.623177}
   });
 
-  fetch('/api/v1/users')
-    .then(function(response) {
-      return response.json();
-    })
+  $.get('/api/v1/users')
     .then(function(users) {
       console.log(users);
       users.forEach(function(user) {

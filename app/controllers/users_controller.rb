@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  def index
+  def show
     if current_user && current_user.first_name == nil
       redirect_to "/users/#{current_user.id}/edit"
     else
-      render 'index.html.erb'
+      render 'show.html.erb'
     end
   end
 
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
         )
       end
     end
-    redirect_to "/" 
+    redirect_to "/users/#{@user.id}" 
   end
 
   def current_user_profile

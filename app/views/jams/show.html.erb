@@ -33,8 +33,13 @@
   <% end %>
 </ul>
 </div>
+
+
 <%= link_to "Back to all Jams", "/jams" %>
-<%= link_to "Edit this Jam", "/jams/#{@jam.id}/edit" %>
-<%= link_to "Delete this jam", "/jams/#{@jam.id}" %>
+
+<% if current_user.id == @jam.user_id %>
+  <%= link_to "Edit this Jam", "/jams/#{@jam.id}/edit" %>
+  <%= link_to "Delete this jam", "/jams/#{@jam.id}", {method: :delete} %>
+<% end %>
 
 <%= link_to "Join this jam", "/commitments?jam_id=#{@jam.id}", {method: :post} %>

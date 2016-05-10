@@ -55,42 +55,54 @@ class JamsController < ApplicationController
 
   def edit
     @jam = Jam.find_by(id: params[:id])
-    @genres = Genre.all
-    @instruments = Instrument.all
+    if current_user.id == @jam.user_id
+      @genres = Genre.all
+      @instruments = Instrument.all
+    else
+      redirect_to "/jams/#{@jam.id}"
+    end
   end
 
   def update
     @jam = Jam.find_by(id: params[:id])
-    if @jam.update(
-      name: params[:name],
-      venue: params[:venue],
-      date: params[:datetime],
-      time: params[:datetime],
-      summary: params[:summary],
-      address: params[:address]
-    )
+    if current_user.id == @jam.user_id
+      if @jam.update(
+        name: params[:name],
+        venue: params[:venue],
+        date: params[:datetime],
+        time: params[:datetime],
+        summary: params[:summary],
+        address: params[:address]
+      )
 
-      @jam.id.jam_genres.destroy_all
-      Genre.all.each do |genre|
-        if params[genre.name.downcase]
-          JamGenre.create(
-            jam_id: jam.id,
-            genre_id: genre.id
-          )
-        end
+        # @jam.id.jam_genres.destroy_all
+        # Genre.all.each do |genre|
+        #   if params[genre.name.downcase]
+        #     JamGenre.create(
+        #       jam_id: jam.id,
+        #       genre_id: genre.id
+        #     )
+        #   end
+        # end
+
+        flash[:success] = "Jam successfully updated!"
+        redirect_to "/jams/#{@jam.id}"
+      else
+        render 'edit.html.erb'
       end
-
-      flash[:success] = "Jam successfully updated!"
-      redirect_to "/jams/#{@jam.id}"
     else
-      render 'edit.html.erb'
+      redirect_to "/jams/#{@jam.id}"
     end
   end
 
   def destroy
     jam_id = params[:id]
     @jam = Jam.find_by(id: params[:id])
-    @jam.destroy
-    render 'destroy.html.erb'
+    if current_user.id == @jam.user_id
+      @jam.destroy
+      render 'destroy.html.erb'
+    else 
+      redirect_to "/jams/#{@jam.id}"
+    end 
   end
 end 

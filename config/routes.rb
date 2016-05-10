@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get '/' => 'home#home'
   get '/map' => 'home#map'
 
-  get '/users' => 'users#index'
+  get '/chats' => 'chats#index'
+
+  get '/users/:id' => 'users#show'
   get '/users/:id/edit' => 'users#edit'
   patch '/users/:id' => 'users#update'
 
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
     namespace :v1 do 
       get '/users' => 'users#index'
       get '/chat' => 'users#index'
+      get '/jams' => 'jams#index'
     end 
   end
 end
