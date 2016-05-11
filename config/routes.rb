@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   post '/commitments' => 'commitments#create'
 
+  resources :conversations do 
+    resources :messages
+  end
+
   namespace :api do 
     namespace :v1 do 
       get '/users' => 'users#index'

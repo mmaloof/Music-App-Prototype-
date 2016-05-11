@@ -24,12 +24,18 @@
 
 <div>
   <h4>Desired Instruments:</h4>
-  <p>(Include number of instruments wanted)</p>
   <ul>
     <% @instruments.each do |instrument| %>
       <li>
         <%= instrument.name %>
-        <%= text_field_tag "instruments[#{instrument.id}]" %>
+        <select name="instruments[<%=instrument.id%>]">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
       </li>
     <% end %>
   </ul>

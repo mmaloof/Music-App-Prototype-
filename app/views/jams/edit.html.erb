@@ -12,7 +12,7 @@
 
 <div>
 <%= label_tag :datetime %>
-<%= datetime_local_field_tag :datetime %>
+<%= datetime_local_field_tag :datetime, @jam.datetime %>
 </div>
 
 <div>
@@ -23,6 +23,25 @@
 <div>
   <%= label_tag :address %>
   <%= text_field_tag :address, @jam.address %>
+</div>
+
+<div>
+  <h4>Desired Instruments:</h4>
+  <ul>
+    <% @instruments.each do |instrument| %>
+      <li>
+        <%= instrument.name %>
+        <select name="instruments[<%=instrument.id%>]">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </li>
+    <% end %>
+  </ul>
 </div>
 
 <div>
