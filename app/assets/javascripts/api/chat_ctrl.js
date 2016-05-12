@@ -29,7 +29,7 @@
     };
 
     $scope.createMessage = function(inputText) {
-      myDataRef.push({name: $scope.username, text: inputText});
+      myDataRef.push({name: $scope.username, text: inputText, time: Date.now()});
       $scope.newMessageText = '';
     };
 

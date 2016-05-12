@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get '/chats' => 'chats#index'
 
+  get '/users' => 'users#index'
   get '/users/:id' => 'users#show'
   get '/users/:id/edit' => 'users#edit'
   patch '/users/:id' => 'users#update'

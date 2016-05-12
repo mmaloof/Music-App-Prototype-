@@ -1,21 +1,28 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.where("email NOT LIKE ?", current_user.email)
+  end
+  
   def show
-    if current_user && current_user.first_name == nil
-      redirect_to "/users/#{current_user.id}/edit"
-    else
-      render 'show.html.erb'
-    end
+    user_id = params[:id]
+    @user = User.find_by(id: params[:id])
+    render 'show.html.erb'
   end
 
   def edit
-    user_id = params[:id]
-    @user = User.find_by(id: params[:id])
-    @genres = Genre.all
-    @instruments = Instrument.all
-    render 'edit.html.erb'
+    if current_user.id == params[:id].to_i
+      user_id = params[:id]
+      @user = User.find_by(id: params[:id])
+      @genres = Genre.all
+      @instruments = Instrument.all
+      render 'edit.html.erb'
+    else 
+      redirect_to '/users'
+    end
   end
 
   def update
+    if current_user.id == params[:id].to_i
     user_id = params[:id]
     @user = User.find_by(id: params[:id])
     @user.update(user_params)
@@ -39,7 +46,10 @@ class UsersController < ApplicationController
         )
       end
     end
-    redirect_to "/users/#{@user.id}" 
+      redirect_to "/users/#{@user.id}" 
+    else 
+      redirect_to "/users"
+    end
   end
 
   def current_user_profile

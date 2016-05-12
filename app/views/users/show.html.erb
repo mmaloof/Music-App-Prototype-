@@ -1,21 +1,14 @@
-<div class="container">
-<% if current_user %>
-  <%= link_to "Sign out", "/users/sign_out", method: :delete %>
-  <h1 class="UserNameText"><%= current_user.username %></h1>
-  <p class="RealNameText"><%= current_user.first_name %> <%= current_user.last_name %></p>
-    <div class="row marginBottom marginTop">
-    </div>
-    
-  <%= image_tag current_user.avatar.url(:thumb) %>
+<div class="container">    
+  <%= image_tag @user.avatar.url(:medium) %>
 
-  <p>Birthdate: <%= current_user.birthdate %></p>
-  <p>Bio: <%= current_user.bio %></p>
-  <p>Favorite Artists: <%= current_user.artists %></p>
-  <p>City and Neighborhood: <%= current_user.area %> </p>
+  <p>Birthdate: <%= @user.birthdate %></p>
+  <p>Bio: <%= @user.bio %></p>
+  <p>Favorite Artists: <%= @user.artists %></p>
+  <p>City and Neighborhood: <%= @user.area %> </p>
 </div>
   <p>Instruments: </p>
   <ul>
-  <% current_user.instruments.each do |instrument| %>
+  <% @user.instruments.each do |instrument| %>
     <li>
       <%= instrument.name %>
     </li>
@@ -23,15 +16,13 @@
   </ul>
   <p>Genres: </p>
   <ul>
-  <% current_user.genres.each do |genre| %>
+  <% @user.genres.each do |genre| %>
     <li>
       <%= genre.name %>
     </li>
   <% end %>
   </ul>
 
-<% else %>
-  <%= link_to "Sign in", "/users/sign_in" %>
-  <%= link_to "Sign up", "/users/sign_up" %>
+<% if current_user.id == @user.id %>
+  <%= link_to "Update Info", "/users/#{@user.id}/edit" %>
 <% end %>
-<%= link_to "Update Info", "/users/#{current_user.id}/edit" %>

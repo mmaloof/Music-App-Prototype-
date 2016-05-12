@@ -4,6 +4,12 @@ class MessagesController < ApplicationController
   end
 
   def index
+    if current_user.id == @conversation.sender_id
+      @user = User.find(@conversation.recipient_id)
+    else
+      @user = User.find(@conversation.sender_id)
+    end
+    
     @messages = @conversation.messages
     if @messages.length > 10
       @over_ten = true

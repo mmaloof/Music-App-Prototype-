@@ -10,6 +10,9 @@ function initMap() {
     .then(function(users) {
       console.log(users);
       users.forEach(function(user) {
+        if (user.isCurrentUser) {
+          console.log(user);
+        }
         var marker = new google.maps.Marker({
           map: map,
           draggable: false,

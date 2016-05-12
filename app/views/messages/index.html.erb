@@ -1,3 +1,7 @@
+<%= image_tag @user.avatar.url(:thumb)%>
+<h3>Conversation with <%= @user.username %></h3>
+<hr>
+
 <% if @over_ten %>
  <%= link_to "Show Previous", "?m=all" %>
 <% end %>
