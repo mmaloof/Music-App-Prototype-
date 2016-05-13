@@ -1,5 +1,5 @@
 <div class="ui segment">
- <h3>Mailbox</h3>
+ <h3>Your Mailbox</h3>
  <div class="ui list">
   <div class="item">
    <% @conversations.each do |conversation| %>
@@ -16,7 +16,7 @@
  </div>
 </div>
 <div class="ui segment">
- <h3>All Users</h3>
+ <h3>All Musicians</h3>
   <div class="ui list">
    <% @users.each do |user| %>
     <% if user.id != current_user.id %>

@@ -1,11 +1,12 @@
 <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 <div ng-app="app">
-  <div ng-controller="chatCtrl" ng-init="setup()">
-    <h1>Messages</h1>
+  <div ng-controller="chatCtrl" ng-init="setup(-1)">
+    <h1>Welcome to the Green Room</h1>
+    <h3>Where anyone and everyone can hang out and converse. Go ahead, jump in. The water feels great.</h3>
     <input placeholder="New message" ng-model="newMessageText">
     <button ng-click="createMessage(newMessageText)">Submit</button>
     <div ng-repeat="message in messages">
-      <p>{{ message.name }}: {{ message.text }}</p>
+      <p>{{ message.prettyTime }} <strong>{{ message.name }}</strong>: {{ message.text }}</p>
     </div>
   </div>
 </div>

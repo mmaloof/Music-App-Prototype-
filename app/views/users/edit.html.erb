@@ -31,17 +31,24 @@
     <%= text_field_tag :artists, @user.artists %>
   </div>
 
-  <div>
+    GENRE
+  <div class="row">
     <% @genres.each do |genre| %>
+    <div class="col-sm-3">
       <%= check_box_tag genre.name.downcase, genre.name.downcase, checked = UserGenre.exists?(user_id: @user.id, genre_id: genre.id) %>
       <%= genre.name %>
+      
+    </div>
     <% end %>
   </div>
 
-  <div>
+    INSTRUMENTS
+  <div class="row">
     <% @instruments.each do |instrument| %>
-      <%= check_box_tag instrument.name.downcase, instrument.name.downcase, checked = UserInstrument.exists?(user_id: @user.id, instrument_id: instrument.id) %>
-      <%= instrument.name %>
+      <div class="col-sm-3">
+        <%= check_box_tag instrument.name.downcase, instrument.name.downcase, checked = UserInstrument.exists?(user_id: @user.id, instrument_id: instrument.id) %>
+        <%= instrument.name %>
+      </div>
     <% end %>
   </div>
 

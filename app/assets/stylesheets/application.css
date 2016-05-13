@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ .genres {
+    overflow-y: scroll;
+    max-height: 400px;
+ }

@@ -41,6 +41,16 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    @message = Message.find_by(id: params[:id])
+    if current_user.id == @message.user_id
+      @message.destroy
+      redirect_to conversation_messages_path(@conversation)
+    else
+      redirect_to '/conversations'
+    end
+  end
+
   private
   
   def message_params

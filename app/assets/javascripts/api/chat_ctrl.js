@@ -5,7 +5,8 @@
     $scope.test = "hello test";
     var myDataRef = new Firebase('https://radiant-heat-5322.firebaseio.com/');
     
-    $scope.setup = function() {
+    $scope.setup = function(jamId) {
+      $scope.jamId = jamId;
       $http.get('/api/v1/chat.json').then(function(response) {
         var users = response.data;
         // console.log(users);
@@ -22,14 +23,25 @@
         $scope.messages = [];
         myDataRef.on('child_added', function(snapshot) {
           $timeout(function() {
-            $scope.messages.push(snapshot.val());
+            var message = snapshot.val();
+            console.log(message, $scope.jamId);
+            if (message.jamId === $scope.jamId) {
+              message.prettyTime = new Date(message.time).toString();
+              $scope.messages.push(message);
+            }
           });
         });
       });
     };
 
     $scope.createMessage = function(inputText) {
-      myDataRef.push({name: $scope.username, text: inputText, time: Date.now()});
+      console.log(inputText);
+      myDataRef.push({
+        name: $scope.username,
+        text: inputText,
+        time: Date.now(),
+        jamId: $scope.jamId
+      });
       $scope.newMessageText = '';
     };
 

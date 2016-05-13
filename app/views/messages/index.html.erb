@@ -18,6 +18,7 @@
         <i class="right triangle icon"></i>
          <%= message.body %>
       </div>
+      <a href="/conversations/<%=@conversation.id%>/messages/<%=message.id%>" data-method='delete'>Delete Message</a>
     </div>
    </div>
  </div>
