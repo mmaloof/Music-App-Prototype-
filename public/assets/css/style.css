@@ -131,8 +131,8 @@ Form styles
 
 .form-control {
 	font-family: "Inconsolata", sans-serif;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
+/*	text-transform: uppercase;
+*/	letter-spacing: 0.1em;
 	font-size: 11px;
 	height: 33px;
 	border: 1px solid #b2b2b2;
@@ -506,8 +506,8 @@ blockquote {
 
 .font-alt {
 	font-family: "Montserrat", sans-serif;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
+/*	text-transform: uppercase;
+*/	letter-spacing: 0.1em;
 }
 
 .font-inc {

@@ -1,62 +1,67 @@
-<hr>
-<%= form_tag "/jams", method: :post do %>
-<div>
-  <%= label_tag :name_it %>
-  <%= text_field_tag :name %>
-</div>
-<div>
-  <%= label_tag :venue %>
-  <%= text_field_tag :venue %>
-</div>
-<div>
-  <%= label_tag :date %>
-  <%= date_field_tag :date %>
-</div>
-<div>
-  <%= label_tag :time %>
-  <%= time_field_tag :time %>
-</div>
-<div>
-  <%= label_tag :summary %>
-  <%= text_area_tag :summary %>
-</div>
-<div>
-  <%= label_tag :address %>
-  <%= text_field_tag :address %>
-</div>
+<section class="module">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h4 class="font-alt m-t-0 m-b-0">Create Music Event</h4>
+        <hr class="divider-w m-t-10 m-b-20">
+        <div class="form-group">
+          <form action="/jams" method="post">
+            <div>
+              <input class="form-control" type="text" placeholder="Fill out all fields before creating" readonly>
+            </div>
+            <div class="form-group">
+              <input class="form-control input-lg" type="text" placeholder="Event Title" name="name">
+            </div>
+            <div class="form-group">
+              <input class="form-control input-lg" type="text" placeholder="Venue" name="venue">
+            </div>
+            <div class="form-group">
+              <input class="form-control input-lg" type="date" placeholder="Date" name="date">
+            </div>
+            <div class="form-group">
+              <input class="form-control input-lg" type="time" placeholder="Time" name="time">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="7" placeholder="Summary" name="summary"></textarea>
+            </div>  
+            <div class="form-group">
+              <input class="form-control input-lg" type="text" placeholder="Address" name="address">
+            </div>
+            <div>
+              <h4 style="font-family:Montserrat;">Desired Instruments:</h4>
+              <ul>
+                <% @instruments.each do |instrument| %>
+                  <li>
+                    <%= instrument.name %>
+                    <select name="instruments[<%=instrument.id%>]">
+                      <option value="0">none</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
 
-<div>
-  <h4>Desired Instruments:</h4>
-  <ul>
-    <% @instruments.each do |instrument| %>
-      <li>
-        <%= instrument.name %>
-        <select name="instruments[<%=instrument.id%>]">
-          <option value="0">none</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
-<div>
-  <h4>Desired Genres:</h4>
-  <ul>
-    <% @genres.each do |genre| %>
-      <%= check_box_tag genre.name.downcase, genre.name.downcase %>
-      <%= genre.name %>
-    <%end%>
-  </ul>
-</div>
-<hr>
-<div>
-  <%= submit_tag "Start Jam!" %>
-</div>
-
-<% end %>
+            <div>
+              <h4 style="font-family:Montserrat;">Desired Genres:</h4>
+              <ul>
+                <% @genres.each do |genre| %>
+                  <%= check_box_tag genre.name.downcase, genre.name.downcase %>
+                  <%= genre.name %>
+                <%end%>
+              </ul>
+            </div>
+            <div class="form-group">
+            <button type="submit" class="btn btn-success btn-round">Create Event</button>
+            </div>
+          </form>
+        </div>        
+      </div>
+    </div>
+  </div>
+</section>

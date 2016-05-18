@@ -54,7 +54,7 @@ class JamsController < ApplicationController
     jam_id = params[:id]
     @jam = Jam.find_by(id: params[:id])
     @banner_image = "/assets/images/drums.jpg"
-    @banner_title = "What's the word?"
+    @banner_title = "What's the plan?"
     @banner_subtitle = ""
   end
 

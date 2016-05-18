@@ -46,8 +46,12 @@
 </div>
 
 <% if current_user.id == @jam.user_id %>
-  <%= link_to "Edit this Jam", "/jams/#{@jam.id}/edit" %>
-  <%= link_to "Delete this jam", "/jams/#{@jam.id}", {method: :delete} %>
+<br>
+  <a href="/jams/<%= @jam.id %>/edit"><button type="button" class="btn btn-warning btn-round">Edit</button></a>
+<br>
+  <%= button_to "Delete", "/jams/#{@jam.id}", method: :delete, class: "btn btn-danger btn-round" %>
+<br>
 <% end %>
 
-<%= link_to "Join this jam", "/commitments?jam_id=#{@jam.id}", {method: :post} %>
+
+  <%= button_to "Join Event", "/commitments?jam_id=#{@jam.id}", method: :post, class: "btn btn-success btn-round" %>
