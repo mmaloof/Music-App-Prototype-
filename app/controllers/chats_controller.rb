@@ -1,5 +1,7 @@
 class ChatsController < ApplicationController
   def index
-    render 'index.html.erb'
+    @banner_image = "/assets/images/crowd.jpg"
+    @banner_title = "Welcome to the Green Room"
+    @banner_subtitle = ""
   end
 end

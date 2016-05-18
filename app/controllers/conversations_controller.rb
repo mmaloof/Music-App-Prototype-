@@ -2,6 +2,9 @@ class ConversationsController < ApplicationController
   def index
     @users = User.all 
     @conversations = Conversation.all
+    @banner_image = "/assets/images/green.jpg"
+    @banner_title = "Conversations"
+    @banner_subtitle = "Check your private messages here"
   end
 
   def create

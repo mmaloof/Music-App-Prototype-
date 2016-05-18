@@ -1,12 +1,17 @@
 class UsersController < ApplicationController
   def index
     @users = User.where("email NOT LIKE ?", current_user.email)
+    @banner_image = "/assets/images/behemoth.jpg"
+    @banner_title = "Musician Profiles"
+    @banner_subtitle = ""
   end
   
   def show
     user_id = params[:id]
     @user = User.find_by(id: params[:id])
-    render 'show.html.erb'
+    @banner_image = "/assets/images/rad.jpg"
+    @banner_title = ""
+    @banner_subtitle = ""
   end
 
   def edit
@@ -15,7 +20,9 @@ class UsersController < ApplicationController
       @user = User.find_by(id: params[:id])
       @genres = Genre.all
       @instruments = Instrument.all
-      render 'edit.html.erb'
+      @banner_image = "/assets/images/behemoth.jpg"
+      @banner_title = "Your Profile Information"
+      @banner_subtitle = ""
     else 
       redirect_to '/users'
     end

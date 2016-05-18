@@ -5,20 +5,24 @@ class JamsController < ApplicationController
     else
       @jams = Jam.all
     end
-    render 'index.html.erb'
+    @banner_image = "/assets/images/vultures.jpg"
+    @banner_title = "All Events"
+    @banner_subtitle = ""
   end
 
   def new
     @instruments = Instrument.all
-    render 'new.html.erb'
+    @banner_image = "/assets/images/drums.jpg"
+    @banner_title = "New Event"
+    @banner_subtitle = ""
   end
 
   def create
     @jam = Jam.new(
       name: params[:name],
       venue: params[:venue],
-      date: params[:datetime],
-      time: params[:datetime],
+      date: params[:date],
+      time: params[:time],
       summary: params[:summary],
       address: params[:address],
       user_id: current_user.id
@@ -43,14 +47,15 @@ class JamsController < ApplicationController
     else
       @genres = Genre.all
       @instruments = Instrument.all
-      render 'new.html.erb'
     end
   end
 
   def show 
     jam_id = params[:id]
     @jam = Jam.find_by(id: params[:id])
-    render 'show.html.erb'
+    @banner_image = "/assets/images/drums.jpg"
+    @banner_title = "What's the word?"
+    @banner_subtitle = ""
   end
 
   def edit
@@ -58,6 +63,9 @@ class JamsController < ApplicationController
     if current_user.id == @jam.user_id
       @genres = Genre.all
       @instruments = Instrument.all
+      @banner_image = "/assets/images/drums.jpg"
+      @banner_title = "Edit Event"
+      @banner_subtitle = ""
     else
       redirect_to "/jams/#{@jam.id}"
     end
@@ -69,21 +77,20 @@ class JamsController < ApplicationController
       if @jam.update(
         name: params[:name],
         venue: params[:venue],
-        date: params[:datetime],
-        time: params[:datetime],
+        date: params[:date],
+        time: params[:time],
         summary: params[:summary],
         address: params[:address]
       )
+      JamInstrument.delete_all(jam_id: params[:id])
+      params[:instruments].each do |k, v|
+        JamInstrument.create(jam_id: params[:id], instrument_id: k, quantity: v)
+      end
 
-        # @jam.id.jam_genres.destroy_all
-        # Genre.all.each do |genre|
-        #   if params[genre.name.downcase]
-        #     JamGenre.create(
-        #       jam_id: jam.id,
-        #       genre_id: genre.id
-        #     )
-        #   end
-        # end
+      JamGenre.delete_all(jam_id: params[:id])
+      params[:genres].each do |genre_id|
+        JamGenre.create(jam_id: params[:id], genre_id: genre_id)
+      end
 
         flash[:success] = "Jam successfully updated!"
         redirect_to "/jams/#{@jam.id}"
@@ -100,7 +107,9 @@ class JamsController < ApplicationController
     @jam = Jam.find_by(id: params[:id])
     if current_user.id == @jam.user_id
       @jam.destroy
-      render 'destroy.html.erb'
+      @banner_image = "/assets/images/guitar.jpg"
+      @banner_title = "Jam Deleted"
+      @banner_subtitle = ""
     else 
       redirect_to "/jams/#{@jam.id}"
     end 

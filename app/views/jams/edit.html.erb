@@ -1,3 +1,5 @@
+<hr>
+
 <%= form_tag "/jams/#{@jam.id}", method: :patch do %>
 
 <div>
@@ -11,13 +13,17 @@
 </div>
 
 <div>
-<%= label_tag :datetime %>
-<%= datetime_local_field_tag :datetime, @jam.datetime %>
+  <%= label_tag :date %>
+  <%= date_field_tag :date, @jam.date %>
+</div>
+<div>
+  <%= label_tag :time %>
+  <%= time_field_tag :time, @jam.time %>
 </div>
 
 <div>
   <%= label_tag :summary %>
-  <%= text_field_tag :summary, @jam.summary %>
+  <%= text_area_tag :summary, @jam.summary %>
 </div>
 
 <div>
@@ -32,6 +38,7 @@
       <li>
         <%= instrument.name %>
         <select name="instruments[<%=instrument.id%>]">
+          <option value="0">none</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -43,19 +50,17 @@
     <% end %>
   </ul>
 </div>
-
+<h4>Desired Genres:</h4>
 <div>
   <% @genres.each do |genre| %>
-    <%= check_box_tag genre.name.downcase, genre.name.downcase, checked = JamGenre.exists?(jam_id: @jam.id, genre_id: genre.id) %>
+    <%= check_box_tag "genres[]", genre.id, checked = JamGenre.exists?(jam_id: @jam.id, genre_id: genre.id) %>
     <%= genre.name %>
   <% end %>
 </div>
-
+<hr>
 <div>
   <%= submit_tag "Edit Jam" %>
 </div>
 
-<%= link_to "Back to all Jams", "/jams" %>
-<%= link_to "User Info", "/" %>
-
 <% end %>
+

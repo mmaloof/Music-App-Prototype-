@@ -1,28 +1,58 @@
-<div class="container">    
-  <%= image_tag @user.avatar.url(:medium) %>
+  <div class="wrapper">
 
-  <p>Birthdate: <%= @user.birthdate %></p>
-  <p>Bio: <%= @user.bio %></p>
-  <p>Favorite Artists: <%= @user.artists %></p>
-  <p>City and Neighborhood: <%= @user.area %> </p>
-</div>
-  <p>Instruments: </p>
-  <ul>
-  <% @user.instruments.each do |instrument| %>
-    <li>
-      <%= instrument.name %>
-    </li>
-  <% end %>
-  </ul>
-  <p>Genres: </p>
-  <ul>
-  <% @user.genres.each do |genre| %>
-    <li>
-      <%= genre.name %>
-    </li>
-  <% end %>
-  </ul>
+    <!-- PORTFOLIO DESCRIPTION -->
+    <section class="module-small">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-sm-6">
+
+            <div class="work-details">
+              <%= image_tag @user.avatar.url(:medium) %>
+              <h4 class="work-details-title font-alt">UserName: <%= @user.username %></h4>
+              <ul>
+                <li class="font-inc"><strong>Name: </strong><%= @user.first_name%> <%= @user.last_name %></li>
+                <li class="font-inc"><strong>Birthdate: </strong><%= @user.birthdate %></li>
+                <li class="font-inc"><strong>City and Neighborhood: </strong><%= @user.area %></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="col-sm-6">
+            <p><strong>Bio: </strong><%= @user.bio %></p>
+            <p><strong>Favorite/Important Artists: </strong><%= @user.artists %></p>
+            <p><strong>Instruments: </strong>
+               <ul>
+               <% @user.instruments.each do |instrument| %>
+                 <li>
+                    <%= instrument.name %>
+                 </li>
+               <% end %>
+              </ul>
+            </p>
+
+            <p><strong>Genres: </strong>
+               <ul>
+               <% @user.genres.each do |genre| %>
+                 <li>
+                    <%= genre.name %>
+                 </li>
+               <% end %>
+              </ul>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
 
 <% if current_user.id == @user.id %>
-  <%= link_to "Update Info", "/users/#{@user.id}/edit" %>
+  <a href="/users/<%= @user.id %>/edit"><button type="button" class="btn btn-success btn-round">Update</button></a>
 <% end %>
+
+    </section>
+
+    <!-- /PORTFOLIO DESCRIPTION -->

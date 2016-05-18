@@ -1,12 +1,24 @@
-<h1>Musician Profile</h1>
-<% @users.each_slice(3) do |three_users| %>
-  <div class="row">
-    <% three_users.each do |user| %>
-      <div class="col-md-4 user-card">
-        <div class="well">
-          <h3><%= image_tag user.avatar.url(:thumb)%><a href="/users/<%= user.id %>"><%= user.username %></a></h3>
+<hr>
+
+<!-- PORTFOLIO LIST -->
+<ul id="works-grid" class="works-grid works-grid-3 works-hover-w">
+<% @users.each do |user| %>
+  <!-- PORTFOLIO ITEM -->
+  <li class="work-item illustration webdesign">
+    <a href="/users/<%= user.id %>">
+      <div class="work-image">
+        <%= image_tag user.avatar.url(:medium), style: "width:378px;height:228px"%>
+      </div>
+      <div class="work-caption">
+        <h3 class="work-title font-alt"><%= user.username %></h3>
+        <div class="work-descr font-inc">
+          Profile
         </div>
       </div>
-    <% end %>
-  </div>
+    </a>
+  </li>
+  <!-- /PORTFOLIO ITEM -->
 <% end %>
+</ul>
+<!-- /PORTFOLIO LIST -->
+

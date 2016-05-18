@@ -7,8 +7,10 @@ class Jam < ActiveRecord::Base
   has_many :jam_genres
   has_many :genres, through: :jam_genres
 
+  validates :time, :presence => {:message => 'Time cannot be blank'}
+
   def pretty_time
-    time.strftime("%l : %m %p")
+    time.strftime("%l : %M %p")
   end
 
   def datetime

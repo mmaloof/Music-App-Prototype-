@@ -1,5 +1,4 @@
-<h1>Update User!</h1>
-
+<hr>
 <%= form_tag "/users/#{@user.id}", method: :patch, multipart: true do %>
 
   <div>
@@ -20,7 +19,7 @@
   </div>
   <div>
     <%= label_tag :description %>
-    <%= text_field_tag :bio, @user.bio %>
+    <%= text_area_tag :bio, @user.bio %>
   </div>
   <div>
     <%= label_tag :area %>
@@ -28,7 +27,7 @@
   </div>
   <div>
     <%= label_tag :artists %>
-    <%= text_field_tag :artists, @user.artists %>
+    <%= text_area_tag :artists, @user.artists %>
   </div>
 
     GENRE
@@ -60,10 +59,10 @@
     <%= label_tag :picture %>
     <%= file_field_tag :avatar %>
   </div>
+  <hr>
   <div>
     <%= submit_tag "Save User Info" %>
   </div>
 
-<%= link_to "User Info", "/" %>
   <% end %>
 

@@ -28,6 +28,10 @@ class MessagesController < ApplicationController
     end
 
     @message = @conversation.messages.new
+
+    @banner_image = "/assets/images/guitar.jpg"
+    @banner_title = "Messages"
+    @banner_subtitle = ""
   end
 
   def new 

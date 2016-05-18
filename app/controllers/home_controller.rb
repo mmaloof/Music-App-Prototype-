@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def home
-    'home.html.erb'
+    @banner_image = "/assets/images/hair.jpg"
   end
 
   def map

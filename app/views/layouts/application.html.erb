@@ -84,15 +84,15 @@
   <!-- /NAVIGATION -->
 
   <!-- HOME -->
-  <section id="home" class="module-hero module-parallax module-fade module-full-height bg-dark-30" data-background="/assets/images/section-1.jpg">
+  <section id="home" class="module module-header bg-dark bg-dark-50" data-background="<%=   @banner_image || '/assets/images/section-1.jpg' %>">
 
     <div class="hs-caption container">
       <div class="caption-content">
         <div class="hs-title-size-4 font-alt m-b-30">
-          Hello Musicians
+          <%= @banner_title || 'Hello Musicians' %>
         </div>
         <div class="hs-title-size-1 font-inc">
-          Sound City exists to bring musicians together. It was created to harbor collaboration between musicians with similar passions in music, whether it be playing with others, creating and recording material, or going to shows. Sign up and start collaborating today!<br/>
+          <%= @banner_subtitle || 'Sound City exists to bring musicians together. It was created to harbor collaboration between musicians with similar passions in music, whether it be playing with others, creating and recording material, or going to shows. Sign up and start collaborating today' %><br/>
         </div>
       </div>
     </div>
