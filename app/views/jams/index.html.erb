@@ -1,15 +1,24 @@
+<!-- PORTFOLIO LIST -->
 <hr>
-<% @jams.each_slice(3) do |three_jams| %>
-  <div class="row">
-    <% three_jams.each do |jam| %>
-      <div class="col-md-4 jam-card">
-        <div class="well">
-          <h3>Event: <a href="/jams/<%= jam.id %>"><%= jam.name %></a></h3>
+<ul id="works-grid" class="works-grid works-grid-3 works-hover-w">
+<% @jams.each do |jam| %>
+  <!-- PORTFOLIO ITEM -->
+  <li class="work-item illustration webdesign">
+    <a href="/jams/<%= jam.id %>">
+      <div class="work-image">
+          <img src="assets/images/vinyl.jpg" alt="">
+      </div>
+      <div class="work-caption">
+        <h3 class="work-title font-alt"><%= jam.name %></h3>
+        <div class="work-descr font-inc">
+          Music Event
         </div>
       </div>
-    <% end %>
-  </div>
+    </a>
+  </li>
+  <!-- /PORTFOLIO ITEM -->
 <% end %>
-
+</ul>
+<hr>
   <a href="/jams/new"><button type="button" class="btn btn-success btn-round">Create Event</button></a>
 

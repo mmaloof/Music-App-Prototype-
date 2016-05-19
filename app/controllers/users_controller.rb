@@ -30,29 +30,33 @@ class UsersController < ApplicationController
 
   def update
     if current_user.id == params[:id].to_i
-    user_id = params[:id]
-    @user = User.find_by(id: params[:id])
-    @user.update(user_params)
+      user_id = params[:id]
+      @user = User.find_by(id: params[:id])
+      @user.update(user_params)
 
-    current_user.user_genres.destroy_all
-    Genre.all.each do |genre|
-      if params[genre.name.downcase]
-        UserGenre.create(
-          user_id: current_user.id,
-          genre_id: genre.id
-        )
+      current_user.user_genres.destroy_all
+      if params[:genres]
+        Genre.all.each do |genre|
+          if params[:genres].include?(genre.id.to_s)
+            UserGenre.create(
+              user_id: current_user.id,
+              genre_id: genre.id
+            )
+          end
+        end
       end
-    end
 
-    current_user.user_instruments.destroy_all
-    Instrument.all.each do |instrument|
-      if params[instrument.name.downcase]
-        UserInstrument.create(
-          user_id: current_user.id,
-          instrument_id: instrument.id
-        )
+      current_user.user_instruments.destroy_all
+      if params[:instruments]
+        Instrument.all.each do |instrument|
+          if params[:instruments].include?(instrument.id.to_s)
+            UserInstrument.create(
+              user_id: current_user.id,
+              instrument_id: instrument.id
+            )
+          end
+        end
       end
-    end
       redirect_to "/users/#{@user.id}" 
     else 
       redirect_to "/users"

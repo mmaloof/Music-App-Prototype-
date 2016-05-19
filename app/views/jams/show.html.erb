@@ -1,57 +1,86 @@
-<div class="jam-show">
-  <h3>Name: <%= @jam.name %></h3>
-  <h3>Venue: <%= @jam.venue %></h3>
-  <h3>Date: <%= @jam.date %></h3>
-  <h3>Time: <%= @jam.pretty_time %></h3>
-  <h3>Summary: <%= @jam.summary %></h3>
-  <h3>Address: <%= @jam.address %></h3>
-</div>
-<div>
-<h4>Musicians that have joined:</h4>
-<ul>
-  <% @jam.users.each do |user| %>
-    <li><%= user.username %></li>
-  <% end %>
-</ul>
-</div>
+  <!-- WRAPPER -->
+  <div class="wrapper">
 
-<div>
-<h4>Instruments Wanted:</h4>
-<ul>
-  <% @jam.jam_instruments.each do |jam_instrument| %>
-    <li><%= "#{jam_instrument.instrument.name} - quantity (#{jam_instrument.quantity})" %></li>
-  <%end%>
-</ul>
-</div>
+    <!-- PORTFOLIO DESCRIPTION -->
+    <section class="module-small">
 
-<div>
-<h4>Genres:</h4>
-<ul>
-  <% @jam.jam_genres.each do |jam_genre| %>
-    <li><%= "#{jam_genre.genre.name}" %></li>
-  <% end %>
-</ul>
-</div>
+      <div class="container">
 
-<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-<div ng-app="app">
-  <div ng-controller="chatCtrl" ng-init="setup(<%= @jam.id %>)">
-    <h1>Messages</h1>
-    <input placeholder="New message" ng-model="newMessageText">
-    <button ng-click="createMessage(newMessageText)">Submit</button>
-    <div ng-repeat="message in messages">
-      <p>{{ message.prettyTime }} <strong>{{ message.name }}</strong>: {{ message.text }}</p>
-    </div>
-  </div>
-</div>
+        <div class="row">
 
-<% if current_user.id == @jam.user_id %>
-<br>
-  <a href="/jams/<%= @jam.id %>/edit"><button type="button" class="btn btn-warning btn-round">Edit</button></a>
-<br>
-  <%= button_to "Delete", "/jams/#{@jam.id}", method: :delete, class: "btn btn-danger btn-round" %>
-<br>
-<% end %>
+          <div class="col-sm-6">
+
+            <div class="work-details">
+              <h3 class="work-details-title font-alt"><%= @jam.name %></h3>
+              <ul>
+                <li class="font-inc"><strong>Venue: </strong><%= @jam.venue %></li>
+                <li class="font-inc"><strong>Address: </strong><%= @jam.address %></li>
+                <li class="font-inc"><strong>Date: </strong><%= @jam.date %></li>
+                <li class="font-inc"><strong>Time: </strong><%= @jam.pretty_time %></li>
+                <li class="font-inc"><strong>Genres: </strong></li>
+
+                <ul>
+                  <% @jam.jam_genres.each do |jam_genre| %>
+                    <li><%= "#{jam_genre.genre.name}" %></li>
+                <% end %>
+                </ul>
+
+                <li class="font-inc"><h1>Messages</h1></li>
+                <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+                <div ng-app="app">
+                  <div ng-controller="chatCtrl" ng-init="setup(<%= @jam.id %>)">
+                  <input placeholder="New message" ng-model="newMessageText">
+                  <button ng-click="createMessage(newMessageText)">Submit</button>
+                    <div ng-repeat="message in messages">
+                      <p>{{ message.prettyTime }} <strong>{{ message.name }}</strong>: {{ message.text }}</p>
+                    </div>
+                  </div>
+                </div>
 
 
-  <%= button_to "Join Event", "/commitments?jam_id=#{@jam.id}", method: :post, class: "btn btn-success btn-round" %>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="col-sm-6">
+            <p><strong>About: </strong><%= @jam.summary %></p>
+            <p><strong>Musicians that have joined:</strong>
+              <ul>
+                <% @jam.users.each do |user| %>
+                  <li><%= user.username %></li>
+                <% end %>
+              </ul>
+            </p>
+
+            <p><strong>Instruments wanted:</strong>
+              <ul>
+                <% @jam.jam_instruments.each do |jam_instrument| %>
+                  <li><%= "#{jam_instrument.instrument.name} - quantity (#{jam_instrument.quantity})" %></li>
+                <% end %>
+              </ul>
+
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+        <% if current_user.id == @jam.user_id %>
+        <br>
+          <a href="/jams/<%= @jam.id %>/edit"><button type="button" class="btn btn-warning btn-round">Edit</button></a>
+        <br>
+          <%= button_to "Delete", "/jams/#{@jam.id}", method: :delete, class: "btn btn-danger btn-round" %>
+        <br>
+        <% end %>
+
+
+        <%= button_to "Join Event", "/commitments?jam_id=#{@jam.id}", method: :post, class: "btn btn-success btn-round" %>
+
+    </section>
+    <!-- /PORTFOLIO DESCRIPTION -->

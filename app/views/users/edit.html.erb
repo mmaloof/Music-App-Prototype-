@@ -1,3 +1,77 @@
+<section class="module">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h4 class="font-alt m-t-0 m-b-0">User Information</h4>
+        <hr class="divider-w m-t-10 m-b-20">
+        <div class="form-group">
+          <%= form_tag "/users/#{@user.id}", method: :patch do %>
+          <div>
+            <input class="form-control" type="text" placeholder="Fill out all fields before creating/editing" readonly>
+          </div>
+          <div class="form-group">
+            <%= text_field_tag :username, @user.username, class: "form-control input-lg" %>
+          </div>
+
+          <div class="form-group">
+            <%= text_field_tag :first_name, @user.first_name, class: "form-control input-lg" %>
+          </div>
+
+          <div class="form-group">
+            <%= text_field_tag :last_name, @user.last_name, class: "form-control input-lg" %>
+          </div>
+          <div class="form-group">
+            <%= date_field_tag :birthdate, @user.birthdate, class: "form-control input-lg" %>
+          </div>
+
+          <div class="form-group">
+            <%= text_area_tag :bio, @user.bio, class: "form-control input-lg" %>
+          </div>
+
+          <div class="form-group">
+            <%= text_field_tag :area, @user.area, class: "form-control input-lg" %>
+          </div>
+
+          <div class="form-group">
+            <%= text_field_tag :artists, @user.artists, class: "form-control input-lg" %>
+          </div>
+
+          <div class="form-group">
+            <%= text_field_tag :address, @user.address, class: "form-control input-lg" %>
+          </div>
+
+          <h4 style="font-family:Montserrat;">Instruments:</h4>
+          <div>
+            <% @instruments.each do |instrument| %>
+              <%= check_box_tag "instruments[]", instrument.id, checked = UserInstrument.exists?(user_id: @user.id, instrument_id: instrument.id) %>
+              <%= instrument.name %>
+            <% end %>
+          </div>
+
+          <h4 style="font-family:Montserrat;">Genres:</h4>
+          <div>
+            <% @genres.each do |genre| %>
+              <%= check_box_tag "genres[]", genre.id, checked = UserGenre.exists?(user_id: @user.id, genre_id: genre.id) %>
+              <%= genre.name %>
+            <% end %>
+          </div>
+          <hr>
+          <div>
+            <button type="submit" class="btn btn-success btn-round">Update</button>
+          </div>
+
+          <% end %>
+        </div>        
+      </div>
+    </div>
+  </div>
+</section>
+
+  <div>
+    <%= label_tag :picture %>
+    <%= file_field_tag :avatar %>
+  </div>
+
 <hr>
 <%= form_tag "/users/#{@user.id}", method: :patch, multipart: true do %>
 
