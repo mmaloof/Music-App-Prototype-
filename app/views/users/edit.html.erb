@@ -5,7 +5,7 @@
         <h4 class="font-alt m-t-0 m-b-0">User Information</h4>
         <hr class="divider-w m-t-10 m-b-20">
         <div class="form-group">
-          <%= form_tag "/users/#{@user.id}", method: :patch do %>
+          <%= form_tag "/users/#{@user.id}", method: :patch, multipart: true do %>
           <div>
             <input class="form-control" type="text" placeholder="Fill out all fields before creating/editing" readonly>
           </div>
@@ -57,6 +57,11 @@
           </div>
           <hr>
           <div>
+            <%= label_tag :picture %>
+            <%= file_field_tag :avatar %>
+          </div>
+          <hr>
+          <div>
             <button type="submit" class="btn btn-success btn-round">Update</button>
           </div>
 
@@ -66,77 +71,3 @@
     </div>
   </div>
 </section>
-
-  <div>
-    <%= label_tag :picture %>
-    <%= file_field_tag :avatar %>
-  </div>
-
-<hr>
-<%= form_tag "/users/#{@user.id}", method: :patch, multipart: true do %>
-
-  <div>
-    <%= label_tag :username %>
-    <%= text_field_tag :username, @user.username %>
-  </div>
-  <div>
-    <%= label_tag :first_name %>
-    <%= text_field_tag :first_name, @user.first_name %>
-  </div>
-  <div>
-    <%= label_tag :last_name %>
-    <%= text_field_tag :last_name, @user.last_name %>
-  </div>
-  <div>
-    <%= label_tag :birthdate %>
-    <%= date_field_tag :birthdate, @user.birthdate %>
-  </div>
-  <div>
-    <%= label_tag :description %>
-    <%= text_area_tag :bio, @user.bio %>
-  </div>
-  <div>
-    <%= label_tag :area %>
-    <%= text_field_tag :area, @user.area %>
-  </div>
-  <div>
-    <%= label_tag :artists %>
-    <%= text_area_tag :artists, @user.artists %>
-  </div>
-
-    GENRE
-  <div class="row">
-    <% @genres.each do |genre| %>
-    <div class="col-sm-3">
-      <%= check_box_tag genre.name.downcase, genre.name.downcase, checked = UserGenre.exists?(user_id: @user.id, genre_id: genre.id) %>
-      <%= genre.name %>
-      
-    </div>
-    <% end %>
-  </div>
-
-    INSTRUMENTS
-  <div class="row">
-    <% @instruments.each do |instrument| %>
-      <div class="col-sm-3">
-        <%= check_box_tag instrument.name.downcase, instrument.name.downcase, checked = UserInstrument.exists?(user_id: @user.id, instrument_id: instrument.id) %>
-        <%= instrument.name %>
-      </div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= label_tag :address %>
-    <%= text_field_tag :address, @user.address %>
-  </div>
-  <div>
-    <%= label_tag :picture %>
-    <%= file_field_tag :avatar %>
-  </div>
-  <hr>
-  <div>
-    <%= submit_tag "Save User Info" %>
-  </div>
-
-  <% end %>
-
