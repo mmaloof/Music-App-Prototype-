@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_action :get_genres
 
+
   def get_genres
     @genres = Genre.all
   end
