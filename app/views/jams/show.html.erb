@@ -12,6 +12,7 @@
 
             <div class="work-details">
               <h3 class="work-details-title font-alt"><%= @jam.name %></h3>
+              <h4><%= @jam.user.username %></h4>
               <ul>
                 <li class="font-inc"><strong>Venue: </strong><%= @jam.venue %></li>
                 <li class="font-inc"><strong>Address: </strong><%= @jam.address %></li>
@@ -56,7 +57,9 @@
             <p><strong>Instruments wanted:</strong>
               <ul>
                 <% @jam.jam_instruments.each do |jam_instrument| %>
-                  <li><%= "#{jam_instrument.instrument.name} - quantity (#{jam_instrument.quantity})" %></li>
+                  <% if jam_instrument.quantity > 0 %>
+                    <li><%= "#{jam_instrument.instrument.name} - quantity (#{jam_instrument.quantity})" %></li>
+                  <% end %>
                 <% end %>
               </ul>
 

@@ -11,7 +11,7 @@
 
             <div class="work-details">
               <%= image_tag @user.avatar.url(:medium) %>
-              <h4 class="work-details-title font-alt">UserName: <%= @user.username %></h4>
+              <h4 class="work-details-title font-alt"><%= @user.username %></h4>
               <ul>
                 <li class="font-inc"><strong>Name: </strong><%= @user.first_name%> <%= @user.last_name %></li>
                 <li class="font-inc"><strong>Birthdate: </strong><%= @user.birthdate %></li>
