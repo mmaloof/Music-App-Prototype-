@@ -12,8 +12,8 @@
 
             <div class="work-details">
               <h3 class="work-details-title font-alt"><%= @jam.name %></h3>
-              <h4><%= @jam.user.username %></h4>
               <ul>
+                <li class="font-inc"><strong>Hosted By: </strong><%= @jam.user.username %></li>
                 <li class="font-inc"><strong>Venue: </strong><%= @jam.venue %></li>
                 <li class="font-inc"><strong>Address: </strong><%= @jam.address %></li>
                 <li class="font-inc"><strong>Date: </strong><%= @jam.date %></li>

@@ -1,4 +1,6 @@
 class JamsController < ApplicationController
+  include JamsHelper
+
   def index
     if params[:genre_id]
       @jams = Genre.find(params[:genre_id]).jams
@@ -8,6 +10,7 @@ class JamsController < ApplicationController
     @banner_image = "/assets/images/vultures.jpg"
     @banner_title = "All Events"
     @banner_subtitle = ""
+    @event_photos = event_photos
   end
 
   def new

@@ -6,8 +6,8 @@
   <!-- PORTFOLIO ITEM -->
   <li class="work-item illustration webdesign">
     <a href="/users/<%= user.id %>">
-      <div class="work-image">
-        <%= image_tag user.avatar.url(:medium), style: "width:378px;height:228px"%>
+      <div class="work-image center-cropped">
+        <%= image_tag user.avatar.url, class: "user-image" %>
       </div>
       <div class="work-caption">
         <h3 class="work-title font-alt"><%= user.username %></h3>
